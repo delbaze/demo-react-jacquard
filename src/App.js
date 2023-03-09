@@ -17,6 +17,13 @@ function App() {
     setList([...lists, inputText]);
     setInputText("");
   };
+
+  const handleDelete = (e) => {
+    const index = e.target.dataset.index;
+    let newList = [...lists]; //copie de ma liste avec laquelle je peux bosser
+    newList.splice(index, 1);
+    setList(newList);
+  };
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
@@ -25,10 +32,7 @@ function App() {
         <button>Envoyer</button>
       </form>
 
-      <List 
-        lists={lists}
-        setList = {setList}
-      />
+      <List lists={lists} handleDelete={handleDelete} />
 
       {/* {lists.length === 0 ? (
         <p>La liste des Wilders est vide</p>
