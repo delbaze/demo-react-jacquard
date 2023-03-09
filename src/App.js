@@ -8,14 +8,23 @@ import List from "./components/List";
 function App() {
   const [inputText, setInputText] = useState("");
   const [lists, setList] = useState([]);
+  const [editing, setEditing] = useState(null);
 
   const handleChange = (e) => {
     setInputText(e.target.value);
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    setList([...lists, inputText]);
+
+    let list = [...lists];
+    if (editing) {
+      list[editing] = inputText;
+    } else {
+      list = [...lists, inputText];
+    }
+    setList(list);
     setInputText("");
+    setEditing(null);
   };
 
   const handleDelete = (e) => {
@@ -24,15 +33,30 @@ function App() {
     newList.splice(index, 1);
     setList(newList);
   };
+  const handleUpdate = (e) => {
+    const index = e.target.dataset.index;
+    if (editing == index) {
+      setEditing(null);
+      setInputText("");
+    } else {
+      setEditing(index);
+      setInputText(lists[index]);
+    }
+  };
   return (
     <div className="App">
       <form onSubmit={handleSubmit}>
         <label>Add a wilder</label>
         <input onChange={handleChange} value={inputText} />
-        <button>Envoyer</button>
+        <button>{editing ? "Mettre à jour" : "Envoyer"}</button>
       </form>
 
-      <List lists={lists} handleDelete={handleDelete} />
+      <List
+        lists={lists}
+        handleDelete={handleDelete}
+        handleUpdate={handleUpdate}
+        editing={editing}
+      />
 
       {/* {lists.length === 0 ? (
         <p>La liste des Wilders est vide</p>
