@@ -1,6 +1,7 @@
 // import logo from "./logo.svg";
 import "./App.css";
 import { useState } from "react";
+import List from "./components/List";
 
 //module bundler
 
@@ -24,16 +25,16 @@ function App() {
         <button>Envoyer</button>
       </form>
 
-      {lists.length === 0 ? (
+      <List 
+        lists={lists}
+        setList = {setList}
+      />
+
+      {/* {lists.length === 0 ? (
         <p>La liste des Wilders est vide</p>
       ) : (
-        <ul>
-          My list:
-          {lists.map((list, index) => (
-            <li key={index}>{list}</li>
-          ))}
-        </ul>
-      )}
+
+      )} */}
     </div>
   );
 }
