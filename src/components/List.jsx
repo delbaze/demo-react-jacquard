@@ -1,3 +1,5 @@
+import styles from "./List.module.css";
+
 function List({ lists, handleDelete, handleUpdate, editing }) {
   //   const handleDelete = (e) => {
   //     const index = e.target.dataset.index;
@@ -13,12 +15,17 @@ function List({ lists, handleDelete, handleUpdate, editing }) {
         <ul>
           My list:
           {lists.map((value, index) => (
-            <li key={index}>
+            <li  key={index}>
+              {/* <li className="superToto" key={index}> */}
               {value}{" "}
               <button data-index={index} onClick={handleDelete}>
                 Remove
               </button>
-              <button data-index={index} onClick={handleUpdate}>
+              <button
+                data-index={index}
+                className={editing == index ? 'editing' : null}
+                onClick={handleUpdate}
+              >
                 {editing == index ? "Annuler" : "Edit"}
               </button>
             </li>
