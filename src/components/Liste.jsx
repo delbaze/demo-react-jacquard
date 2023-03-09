@@ -6,10 +6,11 @@ function Liste() {
     // .then((data) => {
     //   console.log(data);
     // });
+    console.log(process.env.REACT_APP_BACK_URL)
     const controller = new AbortController();
     const signal = controller.signal;
     const recupData = async () => {
-      let response = await fetch("http://localhost:4000/wilder/list", {
+      let response = await fetch(`${process.env.REACT_APP_BACK_URL}/wilder/list`, {
         signal,
       });
       let data = await response.json();
