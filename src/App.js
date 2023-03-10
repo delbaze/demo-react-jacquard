@@ -9,7 +9,9 @@ import Liste from "./components/Liste";
 
 function App() {
   return (
-    <div className="App">
+    <div
+      className="App"
+    >
       <Routes>
         <Route path="/" element={<Accueil />}>
           <Route index element={<Liste />} />
