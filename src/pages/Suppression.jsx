@@ -40,7 +40,7 @@ function Suppression() {
   return (
     <div>
       <form onSubmit={handleSubmit}>
-        <h1>Voulez vous supprimer {state.first_name}?</h1>
+        <h1>Voulez vous supprimer {state?.first_name}?</h1>
         <button>Confirmer suppression?</button>
       </form>
       {error}
